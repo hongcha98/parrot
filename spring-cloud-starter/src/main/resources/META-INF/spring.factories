@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+io.github.hongcha98.parrot.cloud.serviceregistry.ParrotServiceRegistryAutoConfig,\
+io.github.hongcha98.parrot.cloud.discovery.ParrotDiscoveryAutoConfig

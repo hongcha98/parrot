@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: test-setvice
+  cloud:
+    parrot:
+      discovery:
+        enable: true
