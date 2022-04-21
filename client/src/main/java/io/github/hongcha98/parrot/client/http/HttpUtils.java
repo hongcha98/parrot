@@ -1,6 +1,7 @@
 package io.github.hongcha98.parrot.client.http;
 
 import com.alibaba.fastjson.JSON;
+import io.github.hongcha98.parrot.common.error.ParrotException;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
@@ -57,7 +58,7 @@ public class HttpUtils {
                 throw new RuntimeException(toStr(responseEntity));
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ParrotException(e);
         }
     }
 

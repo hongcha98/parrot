@@ -1,8 +1,9 @@
 package io.github.hongcha98.parrot.cloud.serviceregistry;
 
-import io.github.hongcha98.parrot.client.model.Instance;
+
 import io.github.hongcha98.parrot.cloud.ParrotDiscoveryProperties;
 import io.github.hongcha98.parrot.cloud.ParrotServiceInstance;
+import io.github.hongcha98.parrot.common.model.Instance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration;

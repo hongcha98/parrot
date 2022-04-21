@@ -1,7 +1,7 @@
 package io.github.hongcha98.parrot.cloud.serviceregistry;
 
 import io.github.hongcha98.parrot.client.naming.NamingServer;
-import io.github.hongcha98.parrot.client.model.Instance;
+import io.github.hongcha98.parrot.common.model.Instance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 
@@ -20,12 +20,12 @@ public class ParrotServiceRegistry implements ServiceRegistry<Registration> {
 
     @Override
     public void deregister(Registration registration) {
-        namingServer.unRegistry(buildInstance(registration));
+        namingServer.deregister(buildInstance(registration));
     }
 
     @Override
     public void close() {
-
+        namingServer.shutdown();
     }
 
     @Override

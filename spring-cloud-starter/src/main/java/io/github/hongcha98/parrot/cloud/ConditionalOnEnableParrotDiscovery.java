@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 @ConditionalOnProperty(value = "spring.cloud.parrot.discovery.enable", matchIfMissing = true)
-public @interface EnableParrotDiscovery {
+public @interface ConditionalOnEnableParrotDiscovery {
 }

@@ -1,4 +1,4 @@
-package io.github.hongcha98.parrot.core.model;
+package io.github.hongcha98.parrot.common.model;
 
 import java.util.Set;
 

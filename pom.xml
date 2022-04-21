@@ -9,6 +9,7 @@
         <module>client</module>
         <module>spring-cloud-starter</module>
         <module>test</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 

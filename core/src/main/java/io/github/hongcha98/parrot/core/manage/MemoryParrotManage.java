@@ -1,11 +1,12 @@
 package io.github.hongcha98.parrot.core.manage;
 
-import io.github.hongcha98.parrot.core.error.ParrotException;
-import io.github.hongcha98.parrot.core.model.Instance;
+import io.github.hongcha98.parrot.common.error.ParrotException;
+import io.github.hongcha98.parrot.common.model.Instance;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -37,7 +38,16 @@ public class MemoryParrotManage implements ParrotManage {
     public void addInstance(String namespace, Instance instance) {
         Map<String, Set<Instance>> serviceMap = getServiceMap(namespace);
         String serviceName = instance.getServiceName();
-        serviceMap.computeIfAbsent(serviceName, s -> new CopyOnWriteArraySet<>()).add(instance);
+        Set<Instance> instances = serviceMap.computeIfAbsent(serviceName, s -> new CopyOnWriteArraySet<>());
+        if (instances.contains(instance)) {
+            instances.forEach(oldInstance -> {
+                if (Objects.equals(oldInstance, instance)) {
+                    oldInstance.setHeartbeatTime(instance.getHeartbeatTime());
+                }
+            });
+        } else {
+            instances.add(instance);
+        }
     }
 
 

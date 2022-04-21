@@ -6,16 +6,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties("parrot")
 public class ParrotConfig {
-    private long taskTime = 1000;
+    private long instanceHeartbeatTaskTime = 1000;
 
     private long heartbeatTimeout = 15000;
 
-    public long getTaskTime() {
-        return taskTime;
+    public long getInstanceHeartbeatTaskTime() {
+        return instanceHeartbeatTaskTime;
     }
 
-    public void setTaskTime(long taskTime) {
-        this.taskTime = taskTime;
+    public void setInstanceHeartbeatTaskTime(long instanceHeartbeatTaskTime) {
+        this.instanceHeartbeatTaskTime = instanceHeartbeatTaskTime;
     }
 
     public long getHeartbeatTimeout() {

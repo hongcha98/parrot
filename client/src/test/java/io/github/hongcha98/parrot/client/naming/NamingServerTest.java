@@ -1,6 +1,7 @@
 package io.github.hongcha98.parrot.client.naming;
 
-import io.github.hongcha98.parrot.client.model.Instance;
+
+import io.github.hongcha98.parrot.common.model.Instance;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class NamingServerTest {
         instance.setIp("127.0.0.1");
         instance.setPort(7890);
         instance.setMetaData(new HashMap<String, String>());
-        instance.setServiceName("test-server");
+        instance.setServiceName("test-service");
     }
 
     @Test
@@ -27,13 +28,13 @@ public class NamingServerTest {
     }
 
     @Test
-    public void unRegistry() {
-        namingServer.unRegistry(instance);
+    public void deregister() {
+        namingServer.deregister(instance);
     }
 
     @Test
     public void getInstances() {
-        System.out.println("naming.getInstances(\"test-server\") = " + namingServer.getInstances("test-server"));
+        System.out.println("naming.getInstances(\"test-service\") = " + namingServer.getInstances("test-service"));
     }
 
     @Test

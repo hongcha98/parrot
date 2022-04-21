@@ -1,2 +1,5 @@
 server:
   port: 7654
+parrot:
+  instance-heartbeat-task-time: 1000
+  heartbeat-timeout: 15000

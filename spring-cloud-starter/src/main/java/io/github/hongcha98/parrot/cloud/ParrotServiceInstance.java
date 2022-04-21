@@ -1,6 +1,7 @@
 package io.github.hongcha98.parrot.cloud;
 
-import io.github.hongcha98.parrot.client.model.Instance;
+
+import io.github.hongcha98.parrot.common.model.Instance;
 import org.springframework.cloud.client.serviceregistry.Registration;
 
 import java.net.URI;

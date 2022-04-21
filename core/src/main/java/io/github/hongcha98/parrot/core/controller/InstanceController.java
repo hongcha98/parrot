@@ -1,14 +1,15 @@
 package io.github.hongcha98.parrot.core.controller;
 
+import io.github.hongcha98.parrot.common.constant.URIConstant;
+import io.github.hongcha98.parrot.common.model.Instance;
 import io.github.hongcha98.parrot.core.manage.ParrotManage;
-import io.github.hongcha98.parrot.core.model.Instance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
 @RestController
-@RequestMapping("/instance")
+@RequestMapping(URIConstant.INSTANCE)
 public class InstanceController {
     @Autowired
     ParrotManage parrotManage;

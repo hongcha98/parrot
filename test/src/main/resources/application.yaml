@@ -1,6 +1,6 @@
 spring:
   application:
-    name: test-setvice
+    name: test-service
   cloud:
     parrot:
       discovery:

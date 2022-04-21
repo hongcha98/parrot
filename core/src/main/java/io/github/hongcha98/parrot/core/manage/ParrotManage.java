@@ -1,6 +1,6 @@
 package io.github.hongcha98.parrot.core.manage;
 
-import io.github.hongcha98.parrot.core.model.Instance;
+import io.github.hongcha98.parrot.common.model.Instance;
 
 import java.util.Set;
 

@@ -1,5 +1,6 @@
 package io.github.hongcha98.parrot.core.controller;
 
+import io.github.hongcha98.parrot.common.constant.URIConstant;
 import io.github.hongcha98.parrot.core.manage.ParrotManage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/namespace")
+@RequestMapping(URIConstant.NAMESPACE)
 public class NamespaceController {
     @Autowired
     ParrotManage parrotManage;

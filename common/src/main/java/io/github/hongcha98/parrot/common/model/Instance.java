@@ -1,4 +1,4 @@
-package io.github.hongcha98.parrot.core.model;
+package io.github.hongcha98.parrot.common.model;
 
 
 import java.util.Map;
@@ -15,6 +15,10 @@ public class Instance {
         return ip;
     }
 
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     @Override
     public String toString() {
         return "Instance{" +
@@ -24,10 +28,6 @@ public class Instance {
                 ", heartbeatTime=" + heartbeatTime +
                 ", serviceName='" + serviceName + '\'' +
                 '}';
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 
     public int getPort() {

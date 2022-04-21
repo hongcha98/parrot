@@ -1,8 +1,8 @@
 package io.github.hongcha98.parrot.core.task;
 
+import io.github.hongcha98.parrot.common.model.Instance;
 import io.github.hongcha98.parrot.core.config.ParrotConfig;
 import io.github.hongcha98.parrot.core.manage.ParrotManage;
-import io.github.hongcha98.parrot.core.model.Instance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,16 +18,13 @@ import java.util.stream.Collectors;
 
 
 @Component
-public class ServiceHeartbeatTask {
-    private static final Logger LOG = LoggerFactory.getLogger(ServiceHeartbeatTask.class);
-
+public class InstanceHeartbeatTask {
+    private static final Logger LOG = LoggerFactory.getLogger(InstanceHeartbeatTask.class);
+    private final ParrotManage parrotManage;
+    private final ParrotConfig parrotConfig;
     private ScheduledExecutorService scheduledExecutorService;
 
-    private final ParrotManage parrotManage;
-
-    private final ParrotConfig parrotConfig;
-
-    public ServiceHeartbeatTask(ParrotManage parrotManage, ParrotConfig parrotConfig) {
+    public InstanceHeartbeatTask(ParrotManage parrotManage, ParrotConfig parrotConfig) {
         this.parrotManage = parrotManage;
         this.parrotConfig = parrotConfig;
 
@@ -37,7 +34,7 @@ public class ServiceHeartbeatTask {
     @PostConstruct
     public void init() {
         scheduledExecutorService = Executors.newScheduledThreadPool(1);
-        scheduledExecutorService.scheduleAtFixedRate(() -> serviceHeartbeat(), parrotConfig.getTaskTime(), parrotConfig.getTaskTime(), TimeUnit.MILLISECONDS);
+        scheduledExecutorService.scheduleAtFixedRate(() -> serviceHeartbeat(), parrotConfig.getInstanceHeartbeatTaskTime(), parrotConfig.getInstanceHeartbeatTaskTime(), TimeUnit.MILLISECONDS);
     }
 
     @PreDestroy
@@ -63,7 +60,7 @@ public class ServiceHeartbeatTask {
                 });
             });
         } catch (Exception e) {
-            LOG.error("ServiceHeartbeatTask Error", e);
+            LOG.error("InstanceHeartbeatTask error", e);
         }
 
     }
