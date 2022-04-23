@@ -5,3 +5,6 @@ spring:
     parrot:
       discovery:
         enable: true
+        failure-tolerance-enabled: true
+server:
+  port: 8080

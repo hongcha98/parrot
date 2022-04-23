@@ -32,6 +32,8 @@ public class ParrotDiscoveryProperties {
 
     private boolean enable = true;
 
+    private boolean failureToleranceEnabled = false;
+
     public String getServerAddr() {
         return serverAddr;
     }
@@ -88,6 +90,14 @@ public class ParrotDiscoveryProperties {
         this.enable = enable;
     }
 
+    public boolean isFailureToleranceEnabled() {
+        return failureToleranceEnabled;
+    }
+
+    public void setFailureToleranceEnabled(boolean failureToleranceEnabled) {
+        this.failureToleranceEnabled = failureToleranceEnabled;
+    }
+
     @PostConstruct
     public void init() throws UnknownHostException {
         this.serverAddr = Objects.toString(serverAddr, "127.0.0.1:7654");
@@ -107,6 +117,7 @@ public class ParrotDiscoveryProperties {
                 ", port=" + port +
                 ", metadata=" + metadata +
                 ", enable=" + enable +
+                ", failureToleranceEnabled=" + failureToleranceEnabled +
                 '}';
     }
 }

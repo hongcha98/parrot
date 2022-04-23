@@ -19,7 +19,7 @@ public class ParrotDiscoveryClient implements DiscoveryClient {
 
     @Override
     public String description() {
-        return "parrot";
+        return "parrot discovery client";
     }
 
     @Override

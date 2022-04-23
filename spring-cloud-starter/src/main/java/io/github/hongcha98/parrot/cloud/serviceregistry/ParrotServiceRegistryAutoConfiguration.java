@@ -1,6 +1,5 @@
 package io.github.hongcha98.parrot.cloud.serviceregistry;
 
-import io.github.hongcha98.parrot.client.naming.DefaultNamingServerServer;
 import io.github.hongcha98.parrot.client.naming.NamingServer;
 import io.github.hongcha98.parrot.cloud.ConditionalOnEnableParrotDiscovery;
 import io.github.hongcha98.parrot.cloud.ParrotDiscoveryProperties;
@@ -14,17 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnEnableParrotDiscovery
-public class ParrotServiceRegistryAutoConfig {
-
-    @Bean
-    public ParrotDiscoveryProperties parrotRegistrationProperties() {
-        return new ParrotDiscoveryProperties();
-    }
-
-    @Bean
-    public NamingServer naming(ParrotDiscoveryProperties parrotDiscoveryProperties) {
-        return new DefaultNamingServerServer(parrotDiscoveryProperties.getServerAddr(), parrotDiscoveryProperties.getNamespace());
-    }
+public class ParrotServiceRegistryAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
@@ -40,4 +29,5 @@ public class ParrotServiceRegistryAutoConfig {
     ) {
         return new ParrotAutoServiceRegistration(serviceRegistry, autoServiceRegistrationProperties, parrotDiscoveryProperties);
     }
+
 }

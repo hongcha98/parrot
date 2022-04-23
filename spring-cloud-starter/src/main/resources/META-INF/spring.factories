@@ -1,3 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.hongcha98.parrot.cloud.serviceregistry.ParrotServiceRegistryAutoConfig,\
-io.github.hongcha98.parrot.cloud.discovery.ParrotDiscoveryAutoConfig
+io.github.hongcha98.parrot.cloud.ParrotAutoConfiguration,\
+io.github.hongcha98.parrot.cloud.serviceregistry.ParrotServiceRegistryAutoConfiguration,\
+io.github.hongcha98.parrot.cloud.discovery.ParrotDiscoveryAutoConfiguration,\
+io.github.hongcha98.parrot.cloud.discovery.reactive.ParrotReactiveDiscoveryClientAutoConfiguration
