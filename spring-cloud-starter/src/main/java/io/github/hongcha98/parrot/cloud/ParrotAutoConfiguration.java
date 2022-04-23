@@ -1,6 +1,6 @@
 package io.github.hongcha98.parrot.cloud;
 
-import io.github.hongcha98.parrot.client.naming.DefaultNamingServerServer;
+import io.github.hongcha98.parrot.client.naming.DefaultNamingServer;
 import io.github.hongcha98.parrot.client.naming.NamingServer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class ParrotAutoConfiguration {
     }
 
     @Bean
-    public NamingServer naming(ParrotDiscoveryProperties parrotDiscoveryProperties) {
-        return new DefaultNamingServerServer(parrotDiscoveryProperties.getServerAddr(), parrotDiscoveryProperties.getNamespace());
+    public NamingServer namingServer(ParrotDiscoveryProperties parrotDiscoveryProperties) {
+        return new DefaultNamingServer(parrotDiscoveryProperties.getServerAddr(), parrotDiscoveryProperties.getNamespace());
     }
 }

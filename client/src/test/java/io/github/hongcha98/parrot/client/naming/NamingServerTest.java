@@ -14,7 +14,7 @@ public class NamingServerTest {
 
     @Before
     public void init() {
-        namingServer = new DefaultNamingServerServer();
+        namingServer = new DefaultNamingServer();
         instance = new Instance();
         instance.setIp("127.0.0.1");
         instance.setPort(7890);

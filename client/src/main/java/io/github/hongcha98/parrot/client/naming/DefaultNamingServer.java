@@ -8,20 +8,20 @@ import io.github.hongcha98.parrot.common.model.Instance;
 
 import java.util.*;
 
-public class DefaultNamingServerServer implements NamingServer {
+public class DefaultNamingServer implements NamingServer {
     private String serverAddr;
     private String namespace;
     private InstanceHeartbeatTask instanceHeartbeatTask;
 
-    public DefaultNamingServerServer() {
+    public DefaultNamingServer() {
         this(null, null);
     }
 
-    public DefaultNamingServerServer(String serverAddr, String namespace) {
+    public DefaultNamingServer(String serverAddr, String namespace) {
         this(serverAddr, namespace, 1000);
     }
 
-    public DefaultNamingServerServer(String serverAddr, String namespace, long instanceHeartbeatTaskTime) {
+    public DefaultNamingServer(String serverAddr, String namespace, long instanceHeartbeatTaskTime) {
         this.serverAddr = "http://" + Objects.toString(serverAddr, "127.0.0.1:7654");
         this.namespace = Objects.toString(namespace, "PUBLIC");
         this.instanceHeartbeatTask = new InstanceHeartbeatTask(instanceHeartbeatTaskTime, this);
