@@ -2,7 +2,6 @@ package io.github.hongcha98.parrot.client.http;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hongcha98.parrot.common.error.ParrotException;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,15 +20,15 @@ public class HttpUtils {
     private static final String CONTENT_TYPE_VALUE = "application/json;charset=utf-8";
 
     public static <T> T reqApi(HttpMethod httpMethod, String url, Map<String, String> param, Object body, Class<T> clazz) {
-        return reqApi(httpMethod, url, param, body, httpEntity -> JSON.parseObject(httpEntity.getContent(), clazz));
+        return JSON.parseObject(reqApi(httpMethod, url, param, body), clazz);
     }
 
     public static <T> List<T> reqApiListResp(HttpMethod httpMethod, String url, Map<String, String> param, Object body, Class<T> clazz) {
-        return reqApi(httpMethod, url, param, body, httpEntity -> JSON.parseArray(toStr(httpEntity), clazz));
+        return JSON.parseArray(reqApi(httpMethod, url, param, body), clazz);
     }
 
 
-    private static <T> T reqApi(HttpMethod httpMethod, String url, Map<String, String> param, Object body, ResponseConvert<T> responseConvert) {
+    public static String reqApi(HttpMethod httpMethod, String url, Map<String, String> param, Object body) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             if (param != null && !param.isEmpty()) {
                 url += "?";
@@ -49,13 +48,14 @@ public class HttpUtils {
                 httpEntityEnclosingRequestBase.setEntity(new StringEntity(JSON.toJSONString(body)));
             }
             httpEntityEnclosingRequestBase.addHeader(HttpHeaders.CONTENT_TYPE, CONTENT_TYPE_VALUE);
-            CloseableHttpResponse httpResponse = httpClient.execute(httpEntityEnclosingRequestBase);
-            HttpEntity responseEntity = httpResponse.getEntity();
-            int statusCode = httpResponse.getStatusLine().getStatusCode();
-            if (statusCode == HttpStatus.SC_OK) {
-                return responseConvert.convert(responseEntity);
-            } else {
-                throw new RuntimeException(toStr(responseEntity));
+            try (CloseableHttpResponse httpResponse = httpClient.execute(httpEntityEnclosingRequestBase); InputStream is = httpResponse.getEntity().getContent()) {
+                String response = toStr(is);
+                int statusCode = httpResponse.getStatusLine().getStatusCode();
+                if (statusCode == HttpStatus.SC_OK) {
+                    return response;
+                } else {
+                    throw new RuntimeException(response);
+                }
             }
         } catch (Exception e) {
             throw new ParrotException(e);
@@ -63,8 +63,7 @@ public class HttpUtils {
     }
 
 
-    private static String toStr(HttpEntity httpEntity) throws IOException {
-        InputStream is = httpEntity.getContent();
+    private static String toStr(InputStream is) throws IOException {
         byte[] bytes = new byte[65536];
         int offset = 0;
         while (true) {
@@ -80,12 +79,4 @@ public class HttpUtils {
             }
         }
     }
-
-
-    @FunctionalInterface
-    interface ResponseConvert<T> {
-        T convert(HttpEntity httpEntity) throws Exception;
-    }
-
-
 }

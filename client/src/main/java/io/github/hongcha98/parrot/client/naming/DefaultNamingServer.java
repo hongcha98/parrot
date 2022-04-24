@@ -31,7 +31,7 @@ public class DefaultNamingServer implements NamingServer {
     @Override
     public void registry(Instance instance) {
         instanceHeartbeatTask.addInstance(instance);
-        HttpUtils.reqApi(HttpMethod.POST, serverAddr + URIConstant.INSTANCE + "/" + namespace, null, instance, boolean.class);
+        HttpUtils.reqApi(HttpMethod.POST, serverAddr + URIConstant.INSTANCE + "/" + namespace, null, instance);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class DefaultNamingServer implements NamingServer {
         params.put("ip", instance.getIp());
         params.put("port", String.valueOf(instance.getPort()));
         params.put("serviceName", instance.getServiceName());
-        HttpUtils.reqApi(HttpMethod.DELETE, serverAddr + URIConstant.INSTANCE + "/" + namespace, params, null, boolean.class);
+        HttpUtils.reqApi(HttpMethod.DELETE, serverAddr + URIConstant.INSTANCE + "/" + namespace, params, null);
     }
 
     @Override
